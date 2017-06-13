@@ -6,17 +6,14 @@ import (
   "runtime"
 )
 
-func timer(num int, len int) {
+func timer(t *Timer, c chan bool)  {
   runtime.Gosched()
-  t := RepoFindTimer(num)
-  //t.Completed = false
-  //t.Id = num
-  t.Length = len
+  lengthOfTime := t.Length
 
-  fmt.Println("starting timer:",num)
-  time.Sleep(time.Duration(len) * time.Second)
-  fmt.Println("timer over:",num)
+  fmt.Println("starting timer:",t.Id)
+  time.Sleep(time.Duration(lengthOfTime) * time.Second)
+  fmt.Println("timer over:",t.Id)
+  c <- true
 
-  t.Completed = true
 
 }
