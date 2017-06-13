@@ -37,6 +37,12 @@ var routes = Routes{
         Index,            //the function you want to call
     },
     Route{
+        "TodoCreate",
+        "POST",
+        "/todos",
+        TodoCreate,
+    },
+    Route{
         "TodoIndex",
         "GET",
         "/todos",
