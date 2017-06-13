@@ -30,11 +30,11 @@ func NewRouter() *mux.Router {
 }
 
 var routes = Routes{
-    Route{
-        "Index",
-        "GET",
-        "/",
-        Index,
+    Route{                //this is how you set different pages info
+        "Index",          //not sure what this does
+        "GET",            //check if GET, POST, etc
+        "/",              //the address
+        Index,            //the function you want to call
     },
     Route{
         "TodoIndex",
