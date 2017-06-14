@@ -9,12 +9,15 @@ import (
   //"github.com/gorilla/mux"
 )
 
+var currentID int
+
 func Index(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintln(w, "Welcome!")
 }
 
 func TimerCreate(w http.ResponseWriter, r *http.Request) {
   var timer Timer
+
   body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
   if err != nil {
     panic(err)
@@ -33,14 +36,15 @@ func TimerCreate(w http.ResponseWriter, r *http.Request) {
     //   panic(err)
     // }
   // }
-
+  currentID += 1;
+  timer.Id = currentID
   go RepoCreateTimer(timer, w)
   w.Header().Set("Content-Type", "application/json; charset=UTF-8")
   w.WriteHeader(http.StatusCreated)
-  // err = json.NewEncoder(w).Encode(t)
-  // if err != nil {
-  //   panic(err)
-  // }
+  err = json.NewEncoder(w).Encode(timer)
+  if err != nil {
+    panic(err)
+  }
 }
 
 func TimerIndex(w http.ResponseWriter, r *http.Request) {

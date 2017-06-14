@@ -18,7 +18,7 @@ func RepoFindTimer(id int) Timer {
 
 func RepoCreateTimer(t Timer, w http.ResponseWriter) Timer {
   currentId += 1;
-  t.Id = currentId
+  //t.Id = currentId
   timers = append(timers, t)
   //fmt.Println(timers[0])
   channel := make(chan bool)
