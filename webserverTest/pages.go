@@ -23,22 +23,24 @@ func TimerCreate(w http.ResponseWriter, r *http.Request) {
     panic(err)
   }
   if err := json.Unmarshal(body, &timer); err != nil {
-    // w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    // w.WriteHeader(422)
-
-    err := json.NewEncoder(w).Encode(err)
-    if err != nil {
-      panic(err)
-    }
-  }
-
-  t := RepoCreateTimer(timer)
-  // w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-  // w.WriteHeader(http.StatusCreated)
-  err = json.NewEncoder(w).Encode(t)
-  if err != nil {
     panic(err)
   }
+  // w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+  // w.WriteHeader(422)
+
+    // err := json.NewEncoder(w).Encode(err)
+    // if err != nil {
+    //   panic(err)
+    // }
+  // }
+
+  go RepoCreateTimer(timer, w)
+  w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+  w.WriteHeader(http.StatusCreated)
+  // err = json.NewEncoder(w).Encode(t)
+  // if err != nil {
+  //   panic(err)
+  // }
 }
 
 func TimerIndex(w http.ResponseWriter, r *http.Request) {
