@@ -2,7 +2,7 @@ package main
 import (
   "net/http"
   "math/rand"
-  "fmt"
+  // "fmt"
 )
 
 var timerIDs int
@@ -73,7 +73,7 @@ func RepoAuthTest(a AuthStruct) int {
     givenAuth.Code = randNum
     return randNum
   }
-  givenAuth.Code = 812734918273491827340918273409817329847120934871938741092
+  givenAuth.Code = 8127349182734918
   return 0
 }
 
