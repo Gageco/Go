@@ -7,3 +7,11 @@ type Timer struct {
 }
 
 type Timers []Timer
+
+type AlterStruct struct {
+  Id            int       `json:"id"`
+  State         bool      `json:"state"`
+  Description   string    `json:"description"`
+}
+
+type AlterStructs []AlterStruct

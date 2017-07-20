@@ -45,4 +45,22 @@ var routes = Routes{
     "/timers",
     TimerIndex,
   },
+  Route{
+    "RandomText",
+    "GET",
+    "/randomText",
+    RandomText,
+  },
+  Route{
+    "StateChange",
+    "POST",
+    "/stateChange",
+    StateChange,
+  },
+  Route{
+    "StateChangeIndex",
+    "GET",
+    "/stateChange",
+    StateChangeIndex,
+  },
 }
