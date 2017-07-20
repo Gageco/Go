@@ -63,4 +63,16 @@ var routes = Routes{
     "/stateChange",
     StateChangeIndex,
   },
+  Route{
+    "AuthTestGetId",
+    "POST",
+    "/getID",
+    AuthTest,
+  },
+  Route{
+    "AuthTestTryId",
+    "POST",
+    "/useID",
+    AuthTestTryId,
+  },
 }

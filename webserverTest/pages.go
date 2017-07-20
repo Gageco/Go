@@ -87,7 +87,7 @@ func StateChange(w http.ResponseWriter, r *http.Request) {
 
   // alterID += 1
   // alter.Id = alterID
-  alter = RepoStateChange(alter)
+  alter = RepoStateChange(alter)                                                //i dont think this is thread safe tbh
 
   w.Header().Set("Content-Type", "application/json; charset=UTF-8")
   w.WriteHeader(http.StatusCreated)
@@ -100,4 +100,53 @@ func StateChangeIndex(w http.ResponseWriter, r *http.Request) {
   w.WriteHeader(422)
   err := json.NewEncoder(w).Encode(alters)
   checkErr(err)
+}
+
+func AuthTest(w http.ResponseWriter, r *http.Request) {
+  var auth AuthStruct
+
+  body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+  checkErr(err)
+
+  err = r.Body.Close()
+  checkErr(err)
+
+  err = json.Unmarshal(body, &auth)
+  checkErr(err)
+
+  passcode := RepoAuthTest(auth)
+
+  w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+  w.WriteHeader(http.StatusCreated)
+  err = json.NewEncoder(w).Encode(passcode)
+  checkErr(err)
+
+}
+
+func AuthTestTryId(w http.ResponseWriter, r *http.Request) {
+  var uAuth userAuth
+
+  body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+  checkErr(err)
+
+  err = r.Body.Close()
+  checkErr(err)
+
+  err = json.Unmarshal(body, &uAuth)
+  checkErr(err)
+
+  success := RepoAuthTestTryId(uAuth)
+
+  if success == true {
+    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+    w.WriteHeader(http.StatusCreated)
+    err = json.NewEncoder(w).Encode("Success")
+    checkErr(err)
+  } else {
+    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+    w.WriteHeader(http.StatusCreated)
+    err = json.NewEncoder(w).Encode("Fail")
+    checkErr(err)
+  }
+
 }

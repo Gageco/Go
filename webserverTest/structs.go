@@ -15,3 +15,16 @@ type AlterStruct struct {
 }
 
 type AlterStructs []AlterStruct
+
+type AuthStruct struct {
+  User       string     `json:"user"`
+  Pass       string     `json:"pass"`
+}
+
+type validAuth struct {
+  Code     int     `json:"code"`
+}
+
+type userAuth struct {
+  Usercode     int     `json:"usercode"`
+}

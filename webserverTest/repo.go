@@ -1,12 +1,14 @@
 package main
 import (
   "net/http"
-  // "fmt"
+  "math/rand"
+  "fmt"
 )
 
 var timerIDs int
 var timers Timers
 var alters AlterStructs
+var givenAuth validAuth
 
 func RepoFindTimer(id int) Timer {
   for _, t := range timers {
@@ -46,4 +48,39 @@ func RepoStateChange(a AlterStruct) AlterStruct {
   // fmt.Println("At End")
 
   return a
+}
+
+/*
+So this whole auth thing isnt exactly perfect or good or anything just kinda a fun test.
+
+It works for the most part which is neat and so ill be able to authorize my IoT applications but
+the whole concept needs some work because this is still pretty basic
+
+Like:
+- Use actual seeds
+- Have a reset so if its wrong you dont have to worry about it
+- Make thread safe
+- Add more users and junk
+
+*/
+
+func RepoAuthTest(a AuthStruct) int {
+  validUser := "gage"
+  validPass := "coprivnicar"
+
+  if a.User == validUser && a.Pass == validPass {
+    randNum := rand.Intn(1000000000)
+    givenAuth.Code = randNum
+    return randNum
+  }
+  givenAuth.Code = 812734918273491827340918273409817329847120934871938741092
+  return 0
+}
+
+func RepoAuthTestTryId(u userAuth) bool {
+  // fmt.Println(givenAuth.Code)
+  if u.Usercode == givenAuth.Code {
+    return true;
+  }
+  return false
 }
