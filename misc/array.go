@@ -6,7 +6,7 @@ func main() {
   coinArray := [3]string {"eth", "btc", "ltc"}
 
   for i:=0; i < len(coinArray); i++ {
-    fmt.Printf(coinArray[i], ".")
+    fmt.Print(coinArray[i], ".")
   }
 
   for i:= 0; i < 5; i++ {
