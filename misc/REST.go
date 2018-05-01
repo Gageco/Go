@@ -87,3 +87,10 @@ func main() {
      stockTicker02()//the one for more simiple json
   }
 }
+
+
+//POST requests
+url = "http://localhost:9980/renter/upload/data.txt"
+	source = cwd + "/data.txt"
+	response = requests.post(url, data={"datapieces":2, "paritypieces":12,"source":source},headers={"User-Agent":"Sia-Agent"})
+	# print response.status_code

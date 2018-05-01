@@ -8,7 +8,7 @@ import (
 
 func main() {
   fmt.Println("Webserver Has Started at localhost:8080")
-  router := NewRouter()
+  router := NewRouter() //In pageRoutes.go
 
   log.Fatal(http.ListenAndServe(":8080", router))
 }
