@@ -87,7 +87,7 @@ func StateChange(w http.ResponseWriter, r *http.Request) {
 
   // alterID += 1
   // alter.Id = alterID
-  alter = RepoStateChange(alter)                                                //i dont think this is thread safe tbh
+  alter = RepoStateChange(alter)  //i dont think this is thread safe tbh
 
   w.Header().Set("Content-Type", "application/json; charset=UTF-8")
   w.WriteHeader(http.StatusCreated)
